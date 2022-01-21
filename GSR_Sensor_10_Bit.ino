@@ -10,7 +10,7 @@ void setup(){
  
 void loop(){
   long sum = 0;
-  for(int i=0; i<10; i++)              //Mittelwertbildung über 10 Werte, um Störung zu beseitigen
+  for(int i=0; i<10; i++)              //Mittelwertbildung über 10 Werte
       {
       sensorValue = analogRead(GSR);   //Auslesen des analogen Pins
       sum += sensorValue;              //Summe der ausgelesenen Werte
@@ -18,10 +18,11 @@ void loop(){
       }    
    gsr_average = sum/10;
    
-   human_resistance = ((1024 + 2 * gsr_average) * 10000) / (512 - gsr_average);   //Berechnung Hautwiderstand
+   //Berechnung Hautwiderstand
+   human_resistance = ((1024 + 2 * gsr_average) * 10000) / (512 - gsr_average);
 
    //Ausgabe Messwerte
-   //Serial.println("Rohwert (Spannung): ");   //nötig für die Kalibrierung des GSR Sensors (512)
+   //Serial.println("Rohwert (Spannung): ");   //Kalibrierung des GSR Sensors (512)
    //Serial.println(gsr_average);
    Serial.println("Hautwiderstand in Ohm: ");
    Serial.println(human_resistance);
